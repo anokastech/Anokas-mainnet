@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Anokas Core
+Comment=Anokas P2P Cryptocurrency
+Comment[de]=Verbinde mit dem Anokas peer-to-peer Netzwerk
+Comment[fr]=Anokas, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Anokas, eşten eşe kriptografik sanal para birimi
+Exec=anokas-qt %u
+Terminal=false
+Type=Application
+Icon=anokas128
+MimeType=x-scheme-handler/anokas;
+Categories=Office;Finance;

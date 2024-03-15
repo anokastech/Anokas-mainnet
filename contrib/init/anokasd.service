@@ -1,0 +1,22 @@
+[Unit]
+Description=Anokas's distributed currency daemon
+After=network.target
+
+[Service]
+User=anokascore
+Group=anokascore
+
+Type=forking
+PIDFile=/var/lib/anokasd/anokasd.pid
+ExecStart=/usr/bin/anokasd -daemon -pid=/var/lib/anokasd/anokasd.pid \
+-conf=/etc/anokascore/anokas.conf -datadir=/var/lib/anokasd -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

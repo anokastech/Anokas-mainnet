@@ -1,0 +1,6 @@
+usr/local/bin/anokas-qt usr/bin
+share/pixmaps/anokas32.xpm usr/share/pixmaps
+share/pixmaps/anokas16.xpm usr/share/pixmaps
+share/pixmaps/anokas128.png usr/share/pixmaps
+debian/anokas-qt.desktop usr/share/applications
+debian/anokas-qt.protocol usr/share/kde4/services/
