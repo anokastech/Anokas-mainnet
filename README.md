@@ -26,3 +26,7 @@
 <tr><td>1200001-1500000</td><td>40 ANOK</td><td>4 ANOK</td><td>24 ANOK</td><td>12 ANOK</td>
 <tr><td>1500001-INFINITE</td><td>0 ANOK</td><td>0 ANOK</td><td>0 ANOK</td><td>0 ANOK</td>
 </table>
+
+Miningpool
+
+https://pool.rplant.xyz/#anokas#connect
