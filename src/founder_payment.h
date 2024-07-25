@@ -19,6 +19,7 @@
 using namespace std;
 
 static const string DEFAULT_FOUNDER_ADDRESS = "ATcyY7anD6ycjzJM6sa5wkx4EkddFjkwAq";
+
 struct FounderRewardStructure {
 	int blockHeight;
 	int rewardPercentage;
@@ -41,7 +42,5 @@ private:
 	int startBlock;
 	vector<FounderRewardStructure> rewardStructures;
 };
-
-
 
 #endif /* SRC_FOUNDER_PAYMENT_H_ */

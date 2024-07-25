@@ -32,13 +32,20 @@ CAmount FounderPayment::getFounderPaymentAmount(int blockHeight, CAmount blockRe
 void FounderPayment::FillFounderPayment(CMutableTransaction& txNew, int nBlockHeight, CAmount blockReward, CTxOut& txoutFounderRet) {
     // make sure it's not filled yet
 	CAmount founderPayment = getFounderPaymentAmount(nBlockHeight, blockReward);
-//	if(founderPayment == 0) {
-//	    LogPrintf("FounderPayment::FillFounderPayment -- Founder payment has not started\n");
-//	    return;
-//
-//	}
+
 	txoutFounderRet = CTxOut();
     CScript payee;
+
+	std::string DEFAULT_FOUNDER_ADDRESS = "ATcyY7anD6ycjzJM6sa5wkx4EkddFjkwAq";
+    std::string NEW_FOUNDER_ADDRESS = "AHwprhBpA8nVngVf1YcgMTwx9RzDThnhR3";
+	std::string founderAddress;
+
+	if (nBlockHeight < 180000) {
+        founderAddress = DEFAULT_FOUNDER_ADDRESS;
+    } else {
+        founderAddress = NEW_FOUNDER_ADDRESS;
+	}
+
     // fill payee with the foundFounderRewardStrcutureFounderRewardStrcutureer address
     CBitcoinAddress cbAddress(founderAddress);
 	payee = GetScriptForDestination(cbAddress.Get());
@@ -48,6 +55,7 @@ void FounderPayment::FillFounderPayment(CMutableTransaction& txNew, int nBlockHe
     txNew.vout[0].nValue -= founderPayment;
     txoutFounderRet = CTxOut(founderPayment, payee);
     txNew.vout.push_back(txoutFounderRet);
+
     LogPrintf("FounderPayment::FillFounderPayment -- Founder payment %lld to %s\n", founderPayment, founderAddress.c_str());
 }
 
@@ -56,7 +64,6 @@ bool FounderPayment::IsBlockPayeeValid(const CTransaction& txNew, const int heig
 	// fill payee with the founder address
 	payee = GetScriptForDestination(CBitcoinAddress(founderAddress).Get());
 	const CAmount founderReward = getFounderPaymentAmount(height, blockReward);
-	//std::cout << "founderReward = " << founderReward << endl;
 	BOOST_FOREACH(const CTxOut& out, txNew.vout) {
 		if(out.scriptPubKey == payee && out.nValue >= founderReward) {
 			return true;

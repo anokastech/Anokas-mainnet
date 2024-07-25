@@ -390,7 +390,10 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state, int nHeig
             }
         }
         
-		FounderPayment founderPayment = Params().GetConsensus().nFounderPayment;
+        FounderPayment founderPayment = Params().GetConsensus().nFounderPayment;
+        if (nHeight >= 180000) {
+            founderPayment = FounderPayment({{INT_MAX, 10}}, 1, "AHwprhBpA8nVngVf1YcgMTwx9RzDThnhR3");
+        }
 		CAmount founderReward = founderPayment.getFounderPaymentAmount(nHeight, blockReward);
 		int founderStartHeight = founderPayment.getStartBlock();
 		//std::cout << "height= " << nHeight << ", reward= " << founderReward << endl;

@@ -296,13 +296,12 @@ public:
 	    assert(consensus.hashGenesisBlock == uint256S("0x0000000057c155f70bd1202263e52053804df44d668f4f7d5904ed9c2ad47e0f"));
         assert(genesis.hashMerkleRoot == uint256S("0xd1b8ef578364d9a01e8ad3f1c897ce1b08ddd55372749b010310d66e5ee72508"));
 
-        vSeeds.emplace_back("80.240.24.37", false);
-	    vSeeds.emplace_back("45.77.138.178", false);
-        vSeeds.emplace_back("65.20.101.203", false);
-        vSeeds.emplace_back("139.180.188.128", false);
-        vSeeds.emplace_back("95.179.220.16", false);
-        vSeeds.emplace_back("65.20.115.91", false);
-        vSeeds.emplace_back("64.176.66.236", false);
+        vSeeds.emplace_back("seed1.anokas.tech", false);
+	    vSeeds.emplace_back("seed2.anokas.tech", false);
+        vSeeds.emplace_back("seed3.anokas.tech", false);
+        vSeeds.emplace_back("seed4.anokas.tech", false);
+        vSeeds.emplace_back("seed5.anokas.tech", false);
+        vSeeds.emplace_back("seed6.anokas.tech", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,23); // A
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,122);
@@ -313,15 +312,17 @@ public:
         // ANOKAS BIP44 cointype in mainnet is '1668'
         nExtCoinType = 1668;
 
-        vector<FounderRewardStructure> rewardStructures = {{INT_MAX, 10}}; // 10% founder/dev fee forever};
+        vector<FounderRewardStructure> rewardStructures = {{INT_MAX, 10}}; // 10% founder/dev fee forever
         consensus.nFounderPayment = FounderPayment(rewardStructures, 1);
         consensus.nSpecialRewardShare = Consensus::SpecialRewardShare(0.3,0.6,0.1);
-        consensus.nCollaterals = SmartnodeCollaterals(
-                                                      {
-                                                          {INT_MAX, 20000 * COIN}
+        consensus.nCollaterals = SmartnodeCollaterals({
+                                                          {180000, 20000 * COIN},
+                                                          {INT_MAX, 150000 * COIN}
                                                       },
-                                                      { {1, 30}, {INT_MAX, 30} }
-                                                     );
+                                                      {
+                                                          {180000, 30}, 
+                                                          {INT_MAX, 65}
+                                                      });
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
         //vFixedSeeds = std::vector<SeedSpec6>();
@@ -352,14 +353,28 @@ public:
 
         checkpointData = {
             {  
-                {0, uint256S("0x")} 
+                {0, uint256S("0x0000000057c155f70bd1202263e52053804df44d668f4f7d5904ed9c2ad47e0f")},
+                {1520, uint256S("0x0000040b552a4a126390096fdfe9ab3e581a226aa21cb9d04575a5e8d970c67d")},
+                {2560, uint256S("0x00000000000a592583d6c39f4434b38faa74df5189e6c7a50e98d3383288d3ce")},
+                {7015, uint256S("0x000000000004375f0eca154995cc538440f5b677d5061a3c6f2dc68deeec0705")},
+                {10291, uint256S("0x00000000002ee311ab21f4eca802fad425bfa6159f1fb6cd373e8a7b5e056980")},
+                {20980, uint256S("0x00000000005a8f4da02a25a341f3e3c9f2413d24cb8156fe92d8f42db0a08a59")},
+                {29450, uint256S("0x0000000000417d0c75c06738c0c9d80c4e5b2f6c1c762bed25e898e0cc46cc33")},
+                {45821, uint256S("0x00000000002b4749b9eca249ae0ec32704bb3a33a72b43b317304e60deb69490")},
+                {77451, uint256S("0x000000000003d4f7ed6da59133ab3ba0dbfc870850b7c37a673180ea0e6e1658")},
+                {89145, uint256S("0x0000000000135f31a1380854d7dab7d5c307b96edd98d6e8561bbcaabf6e737c")},
+                {112541, uint256S("0x0000000000351adf6cd7109ab9eeb101087b5fd79e919b931f982f607d1bef0f")},
+                {134571, uint256S("0x000000000086dde1a859d5910db7dd14e58b46b546b88a1789c183b07eee1917")},
+                {155236, uint256S("0x00000000005a40ee0762fa7246409544ab7684b4ce22dd23aab7b50a1123e600")},
+                {164289, uint256S("0x000000000007d67e56d358cf1c5827d1c29077b9142742995d2224875cabd130")},
+                {165874, uint256S("0x00000000002509237c87aa381b43de6e5c593e2380479c772faccf2d2437d41a")}
             }
 	    };
 
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Anokas chain
-        	1662386772, // * UNIX timestamp of last known number of transactions 2021-06-18 22:03:06 UTC
-            130153,    // * total number of transactions between genesis and that timestamp
+        	1721818977, // * UNIX timestamp of last known number of transactions 2021-06-18 22:03:06 UTC
+            264500,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             0.05014635153727871       // * estimated number of transactions per second after that timestamp
         };
